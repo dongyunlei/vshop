@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/vs-common/vs-common.iml" filepath="$PROJECT_DIR$/vs-common/vs-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vs-manager/vs-manager.iml" filepath="$PROJECT_DIR$/vs-manager/vs-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vs-manager/vs-manager-dao/vs-manager-dao.iml" filepath="$PROJECT_DIR$/vs-manager/vs-manager-dao/vs-manager-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vs-manager/vs-manager-interface/vs-manager-interface.iml" filepath="$PROJECT_DIR$/vs-manager/vs-manager-interface/vs-manager-interface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vs-manager/vs-manager-pojo/vs-manager-pojo.iml" filepath="$PROJECT_DIR$/vs-manager/vs-manager-pojo/vs-manager-pojo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vs-manager/vs-manager-service/vs-manager-service.iml" filepath="$PROJECT_DIR$/vs-manager/vs-manager-service/vs-manager-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vs-manager/vs-manager-web/vs-manager-web.iml" filepath="$PROJECT_DIR$/vs-manager/vs-manager-web/vs-manager-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vs-parent/vs-parent.iml" filepath="$PROJECT_DIR$/vs-parent/vs-parent.iml" />
+    </modules>
+  </component>
+</project>
