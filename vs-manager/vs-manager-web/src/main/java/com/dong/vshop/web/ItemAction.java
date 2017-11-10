@@ -22,4 +22,9 @@ public class ItemAction {
     public TbItem getById(@PathVariable("itemId") Long itemId) {
         return itemService.getItemById(itemId);
     }
+
+    @RequestMapping("/{href}")
+    public String page(@PathVariable("href") String href){
+        return href;
+    }
 }
