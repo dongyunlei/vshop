@@ -14,8 +14,8 @@
         fit: true,
         pagination: true,
         rownumbers:true,
-        pageSize:20,
-        pageList:[20,40,80],
+        pageSize:17,
+        pageList:[17,40,80],
         columns: [[
             {field: 'ck', checkbox:true},
             {field: 'id', title: '商品ID', width: '50px'},

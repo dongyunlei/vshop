@@ -1,5 +1,7 @@
 package com.dong.vshop.web;
 
+import com.dong.vshop.common.dto.Page;
+import com.dong.vshop.common.dto.Result;
 import com.dong.vshop.pojo.po.TbItem;
 import com.dong.vshop.service.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,15 +21,23 @@ public class ItemAction {
     @Autowired
     private ItemService itemService;
 
+
+
     @ResponseBody
     @RequestMapping(value = "/item/{itemId}", method = RequestMethod.GET)
     public TbItem getById(@PathVariable("itemId") Long itemId) {
         return itemService.getItemById(itemId);
     }
 
+    //@ResponseBody
+    //@RequestMapping("items")
+    //public List<TbItem> listItems(){
+    //    return itemService.getItems();
+    //}
+
     @ResponseBody
-    @RequestMapping("items")
-    public List<TbItem> listItems(){
-        return itemService.getItems();
+    @RequestMapping("/items")
+    public Result<TbItem> listItems(Page page){
+        return itemService.listItemsByPage(page);
     }
 }
