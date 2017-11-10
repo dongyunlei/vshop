@@ -10,7 +10,6 @@ vshop = {
                     href: href,
                     closable: true
                 });
-
             }
         });
     }

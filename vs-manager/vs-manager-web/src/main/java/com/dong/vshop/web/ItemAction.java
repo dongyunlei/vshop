@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 @Controller
 @Scope("prototype")
 public class ItemAction {
@@ -23,8 +25,9 @@ public class ItemAction {
         return itemService.getItemById(itemId);
     }
 
-    @RequestMapping("/{href}")
-    public String page(@PathVariable("href") String href){
-        return href;
+    @ResponseBody
+    @RequestMapping("items")
+    public List<TbItem> listItems(){
+        return itemService.getItems();
     }
 }
