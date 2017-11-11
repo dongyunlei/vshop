@@ -4,7 +4,9 @@
 
 
     <sql id="Base_Column_List">
-     id, title, sell_point as sellPoint, price, num, barcode, image, cid, status, created, updated
+     i.id, i.title, i.sell_point as sellPoint, i.price, i.num,
+     i.barcode, i.image, i.cid, i.status, i.created, i.updated,
+     c.name AS catName
     </sql>
 
     <select id="countItems" resultType="int">
@@ -12,10 +14,14 @@
         FROM tb_item
     </select>
 
-    <select id="listItemsByPage" parameterType="com.dong.vshop.common.dto.Page" resultType="com.dong.vshop.pojo.po.TbItem">
+    <select id="listItemsByPage" parameterType="com.dong.vshop.common.dto.Page"
+            resultType="com.dong.vshop.pojo.vo.TbItemCustom">
         SELECT
-          <include refid="Base_Column_List"/>
-        FROM tb_item
+        <include refid="Base_Column_List"/>
+        FROM tb_item i
+        LEFT JOIN tb_item_cat c
+        ON i.cid = c.id
+        ORDER BY i.cid DESC
         limit #{offset},#{rows}
     </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.dong.vshop.service;
 import com.dong.vshop.common.dto.Page;
 import com.dong.vshop.common.dto.Result;
 import com.dong.vshop.pojo.po.TbItem;
+import com.dong.vshop.pojo.vo.TbItemCustom;
 
 import java.util.List;
 
@@ -16,5 +17,5 @@ public interface ItemService {
      * @param page
      * @return
      */
-    Result<TbItem> listItemsByPage(Page page);
+    Result<TbItemCustom> listItemsByPage(Page page);
 }

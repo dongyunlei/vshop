@@ -2,6 +2,7 @@ package com.dong.vshop.dao;
 
 import com.dong.vshop.common.dto.Page;
 import com.dong.vshop.pojo.po.TbItem;
+import com.dong.vshop.pojo.vo.TbItemCustom;
 
 import java.util.List;
 
@@ -17,5 +18,5 @@ public interface TbItemCustomMapper {
      * @param page
      * @return
      */
-    List<TbItem> listItemsByPage(Page page);
+    List<TbItemCustom> listItemsByPage(Page page);
 }

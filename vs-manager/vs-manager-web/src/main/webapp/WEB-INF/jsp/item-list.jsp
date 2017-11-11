@@ -14,20 +14,20 @@
         fit: true,
         pagination: true,
         rownumbers:true,
-        pageSize:17,
-        pageList:[17,40,80],
+        pageSize:20,
+        pageList:[20,40,80],
         columns: [[
             {field: 'ck', checkbox:true},
-            {field: 'id', title: '商品ID', width: '50px'},
+            {field: 'id', title: '商品ID', width: '100px'},
             {field: 'title', title: 'title', width: '100px'},
-            {field: 'sellPoint', title: '商品卖点', width: '100px'},
-            {field: 'price', title: '商品价格', width: '70px', align: 'right'},
-            {field: 'num', title: '商品数量', width: '70px', align: 'right'},
-            {field: 'barcode', title: '商品ID'},
-            {field: 'cid', title: '商品ID'},
-            {field: 'status', title: '商品ID'},
-            {field: 'created', title: '商品ID'},
-            {field: 'updated', title: '商品ID'}
+            {field: 'sellPoint', title: '卖点', width: '100px'},
+            {field: 'price', title: '商品价格', width: '100px'},
+            {field: 'num', title: '商品数量', width: '100px'},
+            {field: 'barcode', title: '商品ID', width: '100px'},
+            {field: 'catName', title: '商品分类', width: '100px'},
+            {field: 'status', title: '商品状态', width: '100px'},
+            {field: 'created', title: '创建时间', width: '100px'},
+            {field: 'updated', title: '更新时间', width: '100px'}
         ]]
     });
 </script>
