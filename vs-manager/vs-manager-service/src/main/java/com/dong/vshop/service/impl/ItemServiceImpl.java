@@ -5,12 +5,15 @@ import com.dong.vshop.common.dto.Result;
 import com.dong.vshop.dao.TbItemCustomMapper;
 import com.dong.vshop.dao.TbItemMapper;
 import com.dong.vshop.pojo.po.TbItem;
+import com.dong.vshop.pojo.po.TbItemExample;
 import com.dong.vshop.pojo.vo.TbItemCustom;
 import com.dong.vshop.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -46,5 +49,22 @@ public class ItemServiceImpl implements ItemService {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @Override
+    public int updateBatch(List<Long> ids) {
+        int i = 0;
+        try {
+            TbItem item = new TbItem();
+            item.setStatus((byte)3);
+            TbItemExample example = new TbItemExample();
+            TbItemExample.Criteria criteria = example.createCriteria();
+            criteria.andIdIn(ids);
+            i = itemDao.updateByExampleSelective(item,example);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return i;
     }
 }

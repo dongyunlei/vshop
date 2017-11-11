@@ -10,10 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -49,5 +46,18 @@ public class ItemAction {
             e.printStackTrace();
         }
         return result;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/items/batch", method = RequestMethod.POST)
+    public int updateBatch(@RequestParam("ids[]") List<Long> ids) {
+        int i = 0;
+        try {
+            i = itemService.updateBatch(ids);
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+            e.printStackTrace();
+        }
+        return i;
     }
 }
