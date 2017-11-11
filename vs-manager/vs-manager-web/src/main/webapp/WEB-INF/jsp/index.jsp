@@ -12,6 +12,7 @@
     <%--导入easyUI样式表--%>
     <link rel="stylesheet" href="js/jquery-easyui-1.5/themes/default/easyui.css">
     <link rel="stylesheet" href="js/jquery-easyui-1.5/themes/icon.css">
+    <link rel="stylesheet" href="css/common.css">
     <%--导入jQuery文件--%>
     <script type="text/javascript" src="js/jquery-easyui-1.5/jquery.min.js"></script>
     <script type="text/javascript" src="js/jquery-easyui-1.5/jquery.easyui.min.js"></script>

@@ -6,7 +6,13 @@
     <sql id="Base_Column_List">
      i.id, i.title, i.sell_point as sellPoint, i.price, i.num,
      i.barcode, i.image, i.cid, i.status, i.created, i.updated,
-     c.name AS catName
+     c.name AS catName,
+     CASE i.status
+         WHEN 1 THEN "正常"
+         WHEN 2 THEN "下架"
+         WHEN 3 THEN "删除"
+         ELSE "未知"
+         END AS statusName
     </sql>
 
     <select id="countItems" resultType="int">
