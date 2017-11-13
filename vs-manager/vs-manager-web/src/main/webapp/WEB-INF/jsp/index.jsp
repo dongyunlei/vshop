@@ -14,9 +14,13 @@
     <link rel="stylesheet" href="js/jquery-easyui-1.5/themes/icon.css">
     <link rel="stylesheet" href="css/common.css">
     <%--导入jQuery文件--%>
-    <script type="text/javascript" src="js/jquery-easyui-1.5/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-easyui-1.5/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <script src="js/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="js/jquery-easyui-1.5/jquery.easyui.min.js"></script>
+    <script src="js/jquery-easyui-1.5/locale/easyui-lang-zh_CN.js"></script>
+    <script src="js/moment/moment-with-locales .js"></script>
+    <script>
+        moment.locale('zh-cn');
+    </script>
 </head>
 <body class="easyui-layout">
 <div style="height: 70px;padding-left: 10px" data-options="region:'north'">

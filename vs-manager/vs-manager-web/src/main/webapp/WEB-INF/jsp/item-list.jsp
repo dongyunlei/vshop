@@ -120,8 +120,12 @@
             {field: 'barcode', title: '商品ID', width: '100px'},
             {field: 'catName', title: '商品分类', width: '100px'},
             {field: 'statusName', title: '商品状态', width: '100px'},
-            {field: 'created', title: '创建时间', width: '100px'},
-            {field: 'updated', title: '更新时间', width: '100px'}
+            {field: 'created', title: '创建时间', width: '100px',formatter:function (value,row,index) {
+                return moment(value).format('LL');
+            }},
+            {field: 'updated', title: '更新时间', width: '100px',formatter:function(value,row,index){
+                return moment(value).format('LL');
+            }}
         ]]
     });
 </script>
