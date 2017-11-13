@@ -25,6 +25,10 @@
         where i.status != 3
         <choose>
             <when test="order!=null and order.sort!=null and order.order!=null">
+            <!--and order.orderParams!=null-->
+                <!--<foreach collection="order.orderParams" item="item" index="index" open="order by" close="" separator=",">-->
+                    <!--i.${item}-->
+                <!--</foreach>-->
                 order by convert(i.${order.sort} using gbk) ${order.order}
             </when>
             <otherwise>

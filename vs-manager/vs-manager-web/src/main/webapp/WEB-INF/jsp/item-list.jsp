@@ -110,6 +110,7 @@
         pageSize: 20,
         pageList: [20, 40, 80],
         toolbar: toolbar,
+        //multiSort:true,
         columns: [[
             {field: 'ck', checkbox: true},
             {field: 'id', title: '商品ID', width: '100px', sortable: true},
