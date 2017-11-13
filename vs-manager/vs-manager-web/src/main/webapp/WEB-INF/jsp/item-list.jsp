@@ -115,7 +115,7 @@
             {field: 'id', title: '商品ID', width: '100px'},
             {field: 'title', title: 'title', width: '100px'},
             {field: 'sellPoint', title: '卖点', width: '100px'},
-            {field: 'price', title: '商品价格', width: '100px'},
+            {field: 'priceView', title: '商品价格', width: '100px'},
             {field: 'num', title: '商品数量', width: '100px'},
             {field: 'barcode', title: '商品ID', width: '100px'},
             {field: 'catName', title: '商品分类', width: '100px'},

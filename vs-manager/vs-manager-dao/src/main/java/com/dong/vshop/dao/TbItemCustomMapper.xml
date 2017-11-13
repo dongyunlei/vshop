@@ -4,7 +4,7 @@
 
 
     <sql id="Base_Column_List">
-     i.id, i.title, i.sell_point as sellPoint, i.price, i.num,
+     i.id, i.title, i.sell_point as sellPoint, format(i.price/100,2) as priceView, i.num,
      i.barcode, i.image, i.cid, i.status, i.created, i.updated,
      c.name AS catName,
      CASE i.status
