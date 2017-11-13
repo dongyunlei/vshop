@@ -1,5 +1,6 @@
 package com.dong.vshop.web;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import com.dong.vshop.common.dto.Page;
 import com.dong.vshop.common.dto.Result;
 import com.dong.vshop.pojo.po.TbItem;
@@ -50,10 +51,10 @@ public class ItemAction {
 
     @ResponseBody
     @RequestMapping(value = "/items/batch", method = RequestMethod.POST)
-    public int updateBatch(@RequestParam("ids[]") List<Long> ids) {
+    public int updateBatch(@RequestParam("ids[]") List<Long> ids,byte status) {
         int i = 0;
         try {
-            i = itemService.updateBatch(ids);
+            i = itemService.updateBatch(ids,status);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();

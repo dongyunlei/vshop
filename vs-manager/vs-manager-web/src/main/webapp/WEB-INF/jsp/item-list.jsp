@@ -28,12 +28,11 @@
                     for (var i = 0; i < selects.length; i++) {
                         ids.push(selects[i].id);
                     }
-                    console.log(ids);
                 }
                 $.post(
                     'items/batch',
-                    {"ids[]": ids},
-                    function (data) {
+                    {"ids[]": ids,"status":3},
+                    function () {
                         $('#dg').datagrid('reload');
                     },
                     'json'
@@ -50,13 +49,53 @@
         iconCls: 'icon-up',
         text: '上架',
         handler: function () {
-            console.log('up');
+            var selects = $("#dg").datagrid('getSelections');
+            if(selects.length == 0){
+                $.messager.alert('提示','请至少选择一条记录');
+                return;
+            }
+            $.messager.confirm('提示','确认上架？',function (r) {
+                if(r){
+                    var ids = [];
+                    for (var i = 0;i<selects.length;i++){
+                        ids.push(selects[i].id);
+                    }
+                }
+                $.post(
+                    'items/batch',
+                    {"ids":ids,"status":1},
+                    function () {
+                        $('#dg').datagrid('reload');
+                    },
+                    'json'
+                )
+            })
         }
     }, {
         iconCls: 'icon-down',
         text: '下架',
         handler: function () {
-            console.log('down');
+            var selects = $('#dg').datagrid('getSelections');
+            if(selects.length == 0){
+                $.messager.alert('提示','请至少选择一条记录');
+                return;
+            }
+            $.messager.confirm('提示','确认下架？',function (r) {
+                if (r){
+                    var ids = [];
+                    for(var i = 0;i<selects.length;i++){
+                        ids.push(selects[i].id);
+                    }
+                    $.post(
+                        'items/batch',
+                        {"ids":ids,"status":2},
+                        function () {
+                            $("#dg").datagrid('reload');
+                        },
+                        'json'
+                    )
+                }
+            })
         }
     }]
 </script>

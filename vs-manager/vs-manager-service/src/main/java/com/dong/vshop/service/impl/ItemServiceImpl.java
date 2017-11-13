@@ -52,11 +52,11 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public int updateBatch(List<Long> ids) {
+    public int updateBatch(List<Long> ids,byte status) {
         int i = 0;
         try {
             TbItem item = new TbItem();
-            item.setStatus((byte)3);
+            item.setStatus(status);
             TbItemExample example = new TbItemExample();
             TbItemExample.Criteria criteria = example.createCriteria();
             criteria.andIdIn(ids);

@@ -24,5 +24,5 @@ public interface ItemService {
      * @param ids
      * @return
      */
-    int updateBatch(List<Long> ids);
+    int updateBatch(List<Long> ids,byte status);
 }
