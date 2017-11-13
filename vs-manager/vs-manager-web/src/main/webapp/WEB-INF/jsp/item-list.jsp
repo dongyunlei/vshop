@@ -31,7 +31,7 @@
                 }
                 $.post(
                     'items/batch',
-                    {"ids[]": ids,"status":3},
+                    {"ids[]": ids, "status": 3},
                     function () {
                         $('#dg').datagrid('reload');
                     },
@@ -50,20 +50,20 @@
         text: '上架',
         handler: function () {
             var selects = $("#dg").datagrid('getSelections');
-            if(selects.length == 0){
-                $.messager.alert('提示','请至少选择一条记录');
+            if (selects.length == 0) {
+                $.messager.alert('提示', '请至少选择一条记录');
                 return;
             }
-            $.messager.confirm('提示','确认上架？',function (r) {
-                if(r){
+            $.messager.confirm('提示', '确认上架？', function (r) {
+                if (r) {
                     var ids = [];
-                    for (var i = 0;i<selects.length;i++){
+                    for (var i = 0; i < selects.length; i++) {
                         ids.push(selects[i].id);
                     }
                 }
                 $.post(
                     'items/batch',
-                    {"ids":ids,"status":1},
+                    {"ids": ids, "status": 1},
                     function () {
                         $('#dg').datagrid('reload');
                     },
@@ -76,19 +76,19 @@
         text: '下架',
         handler: function () {
             var selects = $('#dg').datagrid('getSelections');
-            if(selects.length == 0){
-                $.messager.alert('提示','请至少选择一条记录');
+            if (selects.length == 0) {
+                $.messager.alert('提示', '请至少选择一条记录');
                 return;
             }
-            $.messager.confirm('提示','确认下架？',function (r) {
-                if (r){
+            $.messager.confirm('提示', '确认下架？', function (r) {
+                if (r) {
                     var ids = [];
-                    for(var i = 0;i<selects.length;i++){
+                    for (var i = 0; i < selects.length; i++) {
                         ids.push(selects[i].id);
                     }
                     $.post(
                         'items/batch',
-                        {"ids":ids,"status":2},
+                        {"ids": ids, "status": 2},
                         function () {
                             $("#dg").datagrid('reload');
                         },
@@ -112,20 +112,24 @@
         toolbar: toolbar,
         columns: [[
             {field: 'ck', checkbox: true},
-            {field: 'id', title: '商品ID', width: '100px'},
-            {field: 'title', title: 'title', width: '100px'},
+            {field: 'id', title: '商品ID', width: '100px', sortable: true},
+            {field: 'title', title: '商品名称', width: '100px', sortable: true},
             {field: 'sellPoint', title: '卖点', width: '100px'},
             {field: 'priceView', title: '商品价格', width: '100px'},
             {field: 'num', title: '商品数量', width: '100px'},
             {field: 'barcode', title: '商品ID', width: '100px'},
             {field: 'catName', title: '商品分类', width: '100px'},
             {field: 'statusName', title: '商品状态', width: '100px'},
-            {field: 'created', title: '创建时间', width: '100px',formatter:function (value,row,index) {
+            {
+                field: 'created', title: '创建时间', width: '100px', formatter: function (value, row, index) {
                 return moment(value).format('LL');
-            }},
-            {field: 'updated', title: '更新时间', width: '100px',formatter:function(value,row,index){
+            }
+            },
+            {
+                field: 'updated', title: '更新时间', width: '100px', formatter: function (value, row, index) {
                 return moment(value).format('LL');
-            }}
+            }
+            }
         ]]
     });
 </script>

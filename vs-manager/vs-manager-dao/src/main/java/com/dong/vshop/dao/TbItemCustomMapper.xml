@@ -15,12 +15,6 @@
          END AS statusName
     </sql>
 
-    <select id="countItems" resultType="int">
-        SELECT  COUNT(1)
-        FROM tb_item
-        where status != 3
-    </select>
-
     <select id="listItemsByPage" parameterType="com.dong.vshop.common.dto.Page"
             resultType="com.dong.vshop.pojo.vo.TbItemCustom">
         SELECT
@@ -29,7 +23,20 @@
         LEFT JOIN tb_item_cat c
         ON i.cid = c.id
         where i.status != 3
-        ORDER BY i.cid DESC
-        limit #{offset},#{rows}
+        <choose>
+            <when test="order!=null and order.sort!=null and order.order!=null">
+                order by convert(i.${order.sort} using gbk) ${order.order}
+            </when>
+            <otherwise>
+                ORDER BY i.cid DESC
+            </otherwise>
+        </choose>
+        limit #{page.offset},#{page.rows}
+    </select>
+
+    <select id="countItems" resultType="int">
+        SELECT  COUNT(1)
+        FROM tb_item
+        where status != 3
     </select>
 </mapper>

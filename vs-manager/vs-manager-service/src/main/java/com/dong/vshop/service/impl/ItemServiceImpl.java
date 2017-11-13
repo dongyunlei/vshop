@@ -1,5 +1,6 @@
 package com.dong.vshop.service.impl;
 
+import com.dong.vshop.common.dto.Order;
 import com.dong.vshop.common.dto.Page;
 import com.dong.vshop.common.dto.Result;
 import com.dong.vshop.dao.TbItemCustomMapper;
@@ -38,12 +39,12 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public Result<TbItemCustom> listItemsByPage(Page page) {
+    public Result<TbItemCustom> listItemsByPage(Page page,Order order) {
         Result<TbItemCustom> result = null;
         try {
             result = new Result<TbItemCustom>();
             result.setTotal(tbItemCustomDao.countItems());
-            result.setRows(tbItemCustomDao.listItemsByPage(page));
+            result.setRows(tbItemCustomDao.listItemsByPage(page,order));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();

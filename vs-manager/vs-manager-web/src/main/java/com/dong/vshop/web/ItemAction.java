@@ -1,8 +1,8 @@
 package com.dong.vshop.web;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
 import com.dong.vshop.common.dto.Page;
 import com.dong.vshop.common.dto.Result;
+import com.dong.vshop.common.dto.Order;
 import com.dong.vshop.pojo.po.TbItem;
 import com.dong.vshop.pojo.vo.TbItemCustom;
 import com.dong.vshop.service.ItemService;
@@ -38,10 +38,10 @@ public class ItemAction {
 
     @ResponseBody
     @RequestMapping("/items")
-    public Result<TbItemCustom> listItems(Page page) {
+    public Result<TbItemCustom> listItems(Page page,Order order) {
         Result<TbItemCustom> result = null;
         try {
-            result = itemService.listItemsByPage(page);
+            result = itemService.listItemsByPage(page,order);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();

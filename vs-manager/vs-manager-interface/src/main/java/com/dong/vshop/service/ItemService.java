@@ -1,5 +1,6 @@
 package com.dong.vshop.service;
 
+import com.dong.vshop.common.dto.Order;
 import com.dong.vshop.common.dto.Page;
 import com.dong.vshop.common.dto.Result;
 import com.dong.vshop.pojo.po.TbItem;
@@ -17,7 +18,7 @@ public interface ItemService {
      * @param page
      * @return
      */
-    Result<TbItemCustom> listItemsByPage(Page page);
+    Result<TbItemCustom> listItemsByPage(Page page,Order order);
 
     /**
      * 批量删除
