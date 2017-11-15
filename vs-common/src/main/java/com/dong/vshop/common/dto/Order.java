@@ -29,7 +29,7 @@ public class Order {
         String[] orders = order.split(",");
         List<String> list = new ArrayList<>();
         for (int i=0;i<sorts.length;i++){
-            String temp = sorts[i]+" "+orders[i];
+            String temp = "convert(i."+sorts[i]+" using gbk) "+orders[i];
             list.add(temp);
         }
         return list;

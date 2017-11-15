@@ -8,6 +8,7 @@ import com.dong.vshop.dao.TbItemMapper;
 import com.dong.vshop.pojo.po.TbItem;
 import com.dong.vshop.pojo.po.TbItemExample;
 import com.dong.vshop.pojo.vo.TbItemCustom;
+import com.dong.vshop.pojo.vo.TbItemQuery;
 import com.dong.vshop.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,12 +40,12 @@ public class ItemServiceImpl implements ItemService {
 
 
     @Override
-    public Result<TbItemCustom> listItemsByPage(Page page,Order order) {
+    public Result<TbItemCustom> listItemsByPage(Page page, Order order, TbItemQuery query) {
         Result<TbItemCustom> result = null;
         try {
             result = new Result<TbItemCustom>();
             result.setTotal(tbItemCustomDao.countItems());
-            result.setRows(tbItemCustomDao.listItemsByPage(page,order));
+            result.setRows(tbItemCustomDao.listItemsByPage(page, order, query));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
@@ -53,7 +54,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public int updateBatch(List<Long> ids,byte status) {
+    public int updateBatch(List<Long> ids, byte status) {
         int i = 0;
         try {
             TbItem item = new TbItem();
@@ -61,7 +62,7 @@ public class ItemServiceImpl implements ItemService {
             TbItemExample example = new TbItemExample();
             TbItemExample.Criteria criteria = example.createCriteria();
             criteria.andIdIn(ids);
-            i = itemDao.updateByExampleSelective(item,example);
+            i = itemDao.updateByExampleSelective(item, example);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();

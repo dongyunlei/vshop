@@ -5,6 +5,7 @@ import com.dong.vshop.common.dto.Result;
 import com.dong.vshop.common.dto.Order;
 import com.dong.vshop.pojo.po.TbItem;
 import com.dong.vshop.pojo.vo.TbItemCustom;
+import com.dong.vshop.pojo.vo.TbItemQuery;
 import com.dong.vshop.service.ItemService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,10 +39,10 @@ public class ItemAction {
 
     @ResponseBody
     @RequestMapping("/items")
-    public Result<TbItemCustom> listItems(Page page,Order order) {
+    public Result<TbItemCustom> listItems(Page page, Order order, TbItemQuery query) {
         Result<TbItemCustom> result = null;
         try {
-            result = itemService.listItemsByPage(page,order);
+            result = itemService.listItemsByPage(page, order, query);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();
@@ -51,12 +52,12 @@ public class ItemAction {
 
     @ResponseBody
     @RequestMapping(value = "/items/batch", method = RequestMethod.POST)
-    public int updateBatch(@RequestParam("ids[]") List<Long> ids,byte status) {
+    public int updateBatch(@RequestParam("ids[]") List<Long> ids, byte status) {
         int i = 0;
         try {
-            i = itemService.updateBatch(ids,status);
-        }catch (Exception e){
-            logger.error(e.getMessage(),e);
+            i = itemService.updateBatch(ids, status);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
             e.printStackTrace();
         }
         return i;

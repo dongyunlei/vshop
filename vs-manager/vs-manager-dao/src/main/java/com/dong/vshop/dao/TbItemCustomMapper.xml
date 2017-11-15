@@ -23,13 +23,18 @@
         LEFT JOIN tb_item_cat c
         ON i.cid = c.id
         where i.status != 3
+        <if test="query!=null and query.title!=null and query.title!=null">
+            and i.title LIKE '%'#{query.title}'%'
+        </if>
+        <if test="query!=null and query.status!=null and query.status!=0">
+            and i.status = #{query.status}
+        </if>
         <choose>
-            <when test="order!=null and order.sort!=null and order.order!=null">
-            <!--and order.orderParams!=null-->
-                <!--<foreach collection="order.orderParams" item="item" index="index" open="order by" close="" separator=",">-->
-                    <!--i.${item}-->
-                <!--</foreach>-->
-                order by convert(i.${order.sort} using gbk) ${order.order}
+            <when test="order!=null and order.sort!=null and order.order!=null and order.orderParams!=null">
+                <foreach collection="order.orderParams" item="item" open="order by" close="" separator=",">
+                   ${item}
+                </foreach>
+--                 order by convert(i.${order.sort} using gbk) ${order.order}
             </when>
             <otherwise>
                 ORDER BY i.cid DESC
