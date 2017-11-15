@@ -4,15 +4,27 @@
 
 
     <sql id="Base_Column_List">
-     i.id, i.title, i.sell_point as sellPoint, format(i.price/100,2) as priceView, i.num,
-     i.barcode, i.image, i.cid, i.status, i.created, i.updated,
-     c.name AS catName,
-     CASE i.status
-         WHEN 1 THEN "正常"
-         WHEN 2 THEN "下架"
-         WHEN 3 THEN "删除"
-         ELSE "未知"
-         END AS statusName
+        i.id, i.title, i.sell_point as sellPoint, format(i.price/100,2) as priceView, i.num,
+        i.barcode, i.image, i.cid, i.status, i.created, i.updated,
+        c.name AS catName,
+        CASE i.status
+        WHEN 1 THEN "正常"
+        WHEN 2 THEN "下架"
+        WHEN 3 THEN "删除"
+        ELSE "未知"
+        END AS statusName
+    </sql>
+
+    <sql id="Where_Clause">
+        <where>
+            i.status != 3
+            <if test="query!=null and query.title!=null and query.title!=null">
+                and i.title LIKE '%${query.title}%'
+            </if>
+            <if test="query!=null and query.status!=null and query.status!=0">
+                and i.status = #{query.status}
+            </if>
+        </where>
     </sql>
 
     <select id="listItemsByPage" parameterType="com.dong.vshop.common.dto.Page"
@@ -22,19 +34,13 @@
         FROM tb_item i
         LEFT JOIN tb_item_cat c
         ON i.cid = c.id
-        where i.status != 3
-        <if test="query!=null and query.title!=null and query.title!=null">
-            and i.title LIKE '%'#{query.title}'%'
-        </if>
-        <if test="query!=null and query.status!=null and query.status!=0">
-            and i.status = #{query.status}
-        </if>
+        <include refid="Where_Clause"/>
         <choose>
             <when test="order!=null and order.sort!=null and order.order!=null and order.orderParams!=null">
                 <foreach collection="order.orderParams" item="item" open="order by" close="" separator=",">
-                   ${item}
+                    ${item}
                 </foreach>
---                 order by convert(i.${order.sort} using gbk) ${order.order}
+                -- order by convert(i.${order.sort} using gbk) ${order.order}
             </when>
             <otherwise>
                 ORDER BY i.cid DESC
@@ -44,8 +50,8 @@
     </select>
 
     <select id="countItems" resultType="int">
-        SELECT  COUNT(1)
-        FROM tb_item
-        where status != 3
+        SELECT COUNT(1)
+        FROM tb_item i
+        <include refid="Where_Clause"/>
     </select>
 </mapper>

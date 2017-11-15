@@ -15,7 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -41,11 +43,15 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public Result<TbItemCustom> listItemsByPage(Page page, Order order, TbItemQuery query) {
+        Map<String, Object> map = new HashMap<>();
+        map.put("page",page);
+        map.put("order",order);
+        map.put("query",query);
         Result<TbItemCustom> result = null;
         try {
             result = new Result<TbItemCustom>();
-            result.setTotal(tbItemCustomDao.countItems());
-            result.setRows(tbItemCustomDao.listItemsByPage(page, order, query));
+            result.setTotal(tbItemCustomDao.countItems(map));
+            result.setRows(tbItemCustomDao.listItemsByPage(map));
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();

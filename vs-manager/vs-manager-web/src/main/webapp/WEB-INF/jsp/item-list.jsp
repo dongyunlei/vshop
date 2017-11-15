@@ -11,7 +11,7 @@
         <label>商品标题:</label>
         <input class="easyui-textbox" type="box" id="title">
         <label>商品状态:</label>
-        <select id="status" class="easyui-combobox">
+        <select id="status" class="easyui-combobox" style="width: 60px">
             <option value="0">全部</option>
             <option value="1">正常</option>
             <option value="2">下架</option>
@@ -19,11 +19,11 @@
         <button onclick="searchForm()" type="button" class="easyui-linkbutton">搜索</button>
     </div>
     <div>
-        <button onclick="add()" class="easyui-linkbutton" data-options="iconCls:icon-add,plain:true">新增</button>
-        <button onclick="edit()" class="easyui-linkbutton" data-options="iconCls:icon-edit,plain:true">编辑</button>
-        <button onclick="remove()" class="easyui-linkbutton" data-options="iconCls:icon-remove,plain:true">删除</button>
-        <button onclick="up()" class="easyui-linkbutton" data-options="iconCls:icon-up,plain:true">上架</button>
-        <button onclick="down()" class="easyui-linkbutton" data-options="iconCls:icon-down,plain:true">下架</button>
+        <button onclick="add()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</button>
+        <button onclick="edit()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑</button>
+        <button onclick="remove()" class="easyui-linkbutton" data-options="iconCls:'icon-remove',plain:true">删除</button>
+        <button onclick="up()" class="easyui-linkbutton" data-options="iconCls:'icon-up',plain:true">上架</button>
+        <button onclick="down()" class="easyui-linkbutton" data-options="iconCls:'icon-down',plain:true">下架</button>
     </div>
 </div>
 <script>
@@ -36,7 +36,7 @@
     }
 
     function add() {
-        console.log('add');
+       tab();
     }
 
     function edit() {
