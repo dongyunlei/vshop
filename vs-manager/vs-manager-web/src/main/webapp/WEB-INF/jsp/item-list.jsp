@@ -36,7 +36,7 @@
     }
 
     function add() {
-       tab();
+       vshop.addTabs("item-add","新增商品");
     }
 
     function edit() {
