@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dong.vshop.dao.TbItemParamCustomerMapper">
+
+  <sql id="Base_Column_List">
+     p.id, p.item_cat_id AS itemCatId, p.created, p.updated,
+     p.param_data AS paramData, c.name AS itemCatName
+  </sql>
+
+  <select id="listItemParamsByPage" parameterType="com.dong.vshop.common.dto.Page" resultType="com.dong.vshop.pojo.vo.TbItemParamCustomer">
+    SELECT
+    <include refid="Base_Column_List" />
+    FROM tb_item_param p
+    LEFT JOIN tb_item_cat c
+    ON p.item_cat_id = c.id
+    LIMIT #{offset},#{rows}
+  </select>
+
+  <select id="countItemParams" resultType="int">
+    SELECT COUNT(1)
+    FROM tb_item_param
+  </select>
+</mapper>
