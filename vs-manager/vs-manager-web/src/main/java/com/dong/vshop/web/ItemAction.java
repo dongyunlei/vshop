@@ -65,10 +65,10 @@ public class ItemAction {
 
     @ResponseBody
     @RequestMapping(value = "/item")
-    public int saveItem(TbItem item, String content) {
+    public int saveItem(TbItem item, String content, String paramData) {
         int i = 0;
         try {
-            i = itemService.saveItem(item, content);
+            i = itemService.saveItem(item, content, paramData);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             e.printStackTrace();

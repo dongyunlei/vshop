@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div id="toolbar">
+<div id="paramtoolbar">
     <div>
         <button onclick="addParam()" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true">新增</button>
         <button onclick="editParam()" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true">编辑
@@ -17,6 +17,11 @@
 </div>
 <table id="dgParam"/>
 <script>
+    
+    function addParam() {
+        vshop.addTabs("新增商品规格模板","item-param-add");
+    }
+    
     $("#dgParam").datagrid({
         title: "商品规格参数列表",
         url: 'itemParams',
@@ -26,7 +31,7 @@
         rownumbers: true,
         pageSize: 20,
         pageList: [10, 20, 40],
-        toolbar: '#toolbar',
+        toolbar: '#paramtoolbar',
         multiSort: true,
         columns: [[
             {field: 'ck', checkbox: true},
@@ -34,7 +39,12 @@
             {field: 'itemCatName', title: '商品类目', width: '100px'},
             {
                 field: 'paramData', title: '规格(只显示分组名称)', width: '100px', formatter: function (value, rows, index) {
-                    return value;
+                    var json = JSON.parse(value);
+                    var arr = [];
+                    $.each(json,function (i,e) {
+                        arr.push(e.group);
+                    })
+                    return arr.join(',');
                 }
             },
 

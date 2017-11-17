@@ -7,9 +7,11 @@ import com.dong.vshop.common.util.IDUtils;
 import com.dong.vshop.dao.TbItemCustomMapper;
 import com.dong.vshop.dao.TbItemDescMapper;
 import com.dong.vshop.dao.TbItemMapper;
+import com.dong.vshop.dao.TbItemParamItemMapper;
 import com.dong.vshop.pojo.po.TbItem;
 import com.dong.vshop.pojo.po.TbItemDesc;
 import com.dong.vshop.pojo.po.TbItemExample;
+import com.dong.vshop.pojo.po.TbItemParamItem;
 import com.dong.vshop.pojo.vo.TbItemCustom;
 import com.dong.vshop.pojo.vo.TbItemQuery;
 import com.dong.vshop.service.ItemService;
@@ -37,6 +39,9 @@ public class ItemServiceImpl implements ItemService {
 
     @Autowired
     private TbItemDescMapper itemDescDao;
+
+    @Autowired
+    private TbItemParamItemMapper itemParamItemDao;
 
     @Override
     public TbItem getItemById(Long itemId) {
@@ -86,7 +91,7 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     @Transactional
-    public int saveItem(TbItem item, String content) {
+    public int saveItem(TbItem item, String content, String paramData) {
         int i = 0;
         try {
             long itemId = IDUtils.getItemId();
@@ -102,6 +107,13 @@ public class ItemServiceImpl implements ItemService {
             itemDesc.setCreated(new Date());
             itemDesc.setUpdated(new Date());
             i += itemDescDao.insert(itemDesc);
+
+            TbItemParamItem itemParamItem = new TbItemParamItem();
+            itemParamItem.setItemId(itemId);
+            itemParamItem.setParamData(paramData);
+            itemParamItem.setCreated(new Date());
+            itemParamItem.setUpdated(new Date());
+            i += itemParamItemDao.insert(itemParamItem);
         }catch (Exception e){
             logger.error(e.getMessage(),e);
             e.printStackTrace();
