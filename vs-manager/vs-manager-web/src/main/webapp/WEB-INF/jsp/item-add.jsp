@@ -75,10 +75,30 @@
 </div>
 
 <script>
+    function submitForm() {
+        $('#itemAddForm').form('submit', {
+            url: "item",
+            onSubmit: function () {
+                return $(this).form('validate');
+            },
+            success: function () {
+                console.log("success");
+            }
+        })
+    }
+
+    function clearForm() {
+        $('#itemAddForm').form('reset');
+        ue.setContent('商品描述');
+    }
+
+
+    var ue = UE.getEditor('container');
+
     $('#cid').combotree({
         url: 'itemCats?parentId=0',
         required: true,
-        onBeforeExpand:function(node){
+        onBeforeExpand: function (node) {
             //获取当前被点击的tree
             var $currentTree = $('#cid').combotree('tree');
             //调用easyui tree组件的options方法
@@ -86,7 +106,7 @@
             //修改option的url属性
             option.url = 'itemCats?parentId=' + node.id;
         },
-        onBeforeSelect:function (node) {
+        onBeforeSelect: function (node) {
             //判断选中节点是否为叶子节点，如果是，返回true
             var isLeaf = $('#cid').tree('isLeaf', node.target);
             //如果后台管理员选中的不是叶子节点的话，给出警告框
