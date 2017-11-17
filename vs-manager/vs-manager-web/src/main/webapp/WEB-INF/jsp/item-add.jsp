@@ -79,10 +79,15 @@
         $('#itemAddForm').form('submit', {
             url: "item",
             onSubmit: function () {
+                $('#price').val($('#priceView').val()*100);
                 return $(this).form('validate');
             },
-            success: function () {
-                console.log("success");
+            success: function (data) {
+                if(data>0){
+                    $.messager.alert('消息','保存成功','info');
+                    $("#tab").tabs('close','新增商品');
+                    vshop.addTabs('查询商品','item-list');
+                }
             }
         })
     }

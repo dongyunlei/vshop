@@ -62,4 +62,17 @@ public class ItemAction {
         }
         return i;
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/item")
+    public int saveItem(TbItem item, String content) {
+        int i = 0;
+        try {
+            i = itemService.saveItem(item, content);
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            e.printStackTrace();
+        }
+        return i;
+    }
 }

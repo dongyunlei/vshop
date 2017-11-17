@@ -29,4 +29,6 @@ public interface ItemService {
      * @return
      */
     int updateBatch(List<Long> ids, byte status);
+
+    int saveItem(TbItem item, String content);
 }
