@@ -75,31 +75,64 @@
 </div>
 
 <script>
+    //提交表单
     function submitForm() {
         $('#itemAddForm').form('submit', {
-            url: "item",
+            //提交表单到item进行处理
+            url: 'item',
+            //在表单提交之前触发
             onSubmit: function () {
-                $('#price').val($('#priceView').val()*100);
+                //将表单上价格单位从元转为分
+                $('#price').val($('#priceView').val() * 100);
+                //获取参数规格部分
+                var paramsJson = [];
+                var $liList = $('#itemAddForm .paramsShow li');
+                $liList.each(function (i, e) {
+                    $group = $(e).find('.group');
+                    var groupName = $group.text();
+
+                    var params = [];
+                    var $trParams = $(e).find('tr').has('td.param');
+                    $trParams.each(function (_i, _e) {
+                        var $oneDataTr = $(_e);
+                        var $keyTd = $oneDataTr.find('.param');
+                        var $valueInput = $keyTd.next('td').find('input');
+                        var key = $keyTd.text();
+                        var value = $valueInput.val();
+
+                        var _o = {
+                            k: key,
+                            v: value
+                        };
+                        params.push(_o);
+                    });
+                    var o = {};
+                    o.group = groupName;
+                    o.params = params;
+                    paramsJson.push(o);
+                });
+                paramsJson = JSON.stringify(paramsJson);
+                $('#paramData').val(paramsJson);
+                //做表单校验，表单上所有字段全部校验通过才能返回true，才会提交表单，
+                //如果有任意一个字段没有校验通过，返回false，不会提交表单
                 return $(this).form('validate');
             },
+            //在表单提交成功以后触发
             success: function (data) {
-                if(data>0){
-                    $.messager.alert('消息','保存成功','info');
-                    $("#tab").tabs('close','新增商品');
-                    vshop.addTabs('查询商品','item-list');
+                if (data > 0) {
+                    $.messager.alert('温馨提示', '恭喜！添加商品成功！');
+                    vshop.closeTabs('新增商品');
+                    vshop.addTabs('查询商品', 'item-list');
                 }
             }
-        })
+        });
     }
 
-    function clearForm() {
-        $('#itemAddForm').form('reset');
-        ue.setContent('商品描述');
-    }
-
-
+    //初始化之前删除原有的容器
+    UE.delEditor('container');
+    //实例化富文本编辑器
     var ue = UE.getEditor('container');
-
+    //加载商品类目的树形下拉框
     $('#cid').combotree({
         url: 'itemCats?parentId=0',
         required: true,
@@ -120,13 +153,15 @@
                 $.messager.alert('警告', '请选中最终的类别！', 'warning');
                 return false;
             } else {
+                debugger;
+                console.log(node);
                 //如果是叶子节点就发送ajax请求，请求查询tb_item_param
                 $.get(
                     //url
                     'itemParam/query/'+node.id,
                     //success
                     function(data){
-                        console.log(data);
+                        //console.log(typeof(data));
                         var $outerTd = $('#itemAddForm .paramsShow td').eq(1);
                         var $ul = $('<ul>');
                         $outerTd.empty().append($ul);
@@ -166,6 +201,8 @@
                     }
                 );
             }
+
         }
     });
+
 </script>

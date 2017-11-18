@@ -27,6 +27,9 @@ var vshop = {
         }
 
 
+    },
+    closeTabs:function (titile) {
+        $('#tab').tabs('close',title);
     }
 
 };

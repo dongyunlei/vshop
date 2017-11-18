@@ -30,5 +30,5 @@ public interface ItemService {
      */
     int updateBatch(List<Long> ids, byte status);
 
-    int saveItem(TbItem item, String content, String paramDate);
+    int saveItem(TbItem item, String content, String paramData);
 }
