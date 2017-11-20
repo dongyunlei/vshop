@@ -9,5 +9,6 @@
     <file url="file://$PROJECT_DIR$/vs-manager/vs-manager-service" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vs-manager/vs-manager-web" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/vs-parent" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/vs-upload" charset="UTF-8" />
   </component>
 </project>

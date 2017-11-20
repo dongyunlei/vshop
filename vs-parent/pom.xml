@@ -10,6 +10,7 @@
     <modules>
         <module>../vs-common</module>
         <module>../vs-manager</module>
+        <module>../vs-upload</module>
     </modules>
 
     <!--打包方式，默认为jar-->

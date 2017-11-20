@@ -10,6 +10,7 @@
       <module fileurl="file://$PROJECT_DIR$/vs-manager/vs-manager-service/vs-manager-service.iml" filepath="$PROJECT_DIR$/vs-manager/vs-manager-service/vs-manager-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/vs-manager/vs-manager-web/vs-manager-web.iml" filepath="$PROJECT_DIR$/vs-manager/vs-manager-web/vs-manager-web.iml" />
       <module fileurl="file://$PROJECT_DIR$/vs-parent/vs-parent.iml" filepath="$PROJECT_DIR$/vs-parent/vs-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/vs-upload/vs-upload.iml" filepath="$PROJECT_DIR$/vs-upload/vs-upload.iml" />
     </modules>
   </component>
 </project>
